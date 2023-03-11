@@ -20,26 +20,20 @@
             id="js-local-stream"
             class="fixed inset-0 h-full w-full pointer-events-none"
         ></video>
-        <section class="fixed inset-0 flex flex-col justify-between">
+        <section class="fixed inset-0 flex flex-col justify-between p-4">
             <!-- <span id="js-room-mode"></span>: -->
             <input
-                class="bg-transparent p-4 rounded-full border-white border mx-4"
+                class="bg-transparent p-4 rounded-full border-white border opacity-0 focus:opacity-100"
                 value="badger"
                 type="text"
                 placeholder="Room Name"
                 id="js-room-id"
             >
             <div
-                class="absolute"
+                class="flex-auto aspect-video"
                 id="js-remote-streams"
             ></div>
-
-            <p
-                class="meta"
-                id="js-meta"
-            ></p>
-
-            <menu class="w-full flex items-center justify-center p-4 gap-4">
+            <menu class="w-full flex items-center justify-center gap-4">
                 <button
                     class="bg-green-500 px-6 py-2 rounded-full"
                     id="js-join-trigger"
@@ -48,19 +42,28 @@
                     class="bg-red-500 px-6 py-2 rounded-full"
                     id="js-leave-trigger"
                 >Leave</button>
-                <details>
+                <details class="ml-auto">
                     <summary class="bg-blue-500 px-6 py-2 rounded-full relative z-10">Chat</summary>
-                    <div class="fixed inset-0 bg-white flex flex-col text-black">
+                    <div class="fixed inset-4 bottom-none h-[calc(100vh-6rem)] bg-white flex flex-col text-black rounded-2xl p-4">
+                        <p
+                            class="meta"
+                            id="js-meta"
+                        ></p>
                         <pre
                             class="flex-auto"
                             id="js-messages"
                         ></pre>
-                        <input
-                            class="bg-transparent p-4"
-                            type="text"
-                            id="js-local-text"
-                        >
-                        <button id="js-send-trigger">Send</button>
+                        <menu class="flex">
+                            <input
+                                class="p-4 flex-auto bg-gray-200 rounded-l-full"
+                                type="text"
+                                id="js-local-text"
+                            >
+                            <button
+                                class="bg-red-500 px-6 py-2 rounded-r-full"
+                                id="js-send-trigger"
+                            >Send</button>
+                        </menu>
                     </div>
                 </details>
             </menu>
@@ -291,7 +294,6 @@
                         }
                     }, 100);
                 }
-
 
                 peer.on('error', (error) => {
                     console.error;
