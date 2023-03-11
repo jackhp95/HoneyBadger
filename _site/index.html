@@ -18,9 +18,9 @@
     <body class="bg-black text-white">
         <video
             id="js-local-stream"
-            class="fixed inset-0 h-full w-full pointer-events-none"
+            class="absolute h-screen h-[100svh] w-full h-full w-full pointer-events-none"
         ></video>
-        <section class="fixed inset-0 flex flex-col justify-between p-4">
+        <section class="absolute h-screen h-[100svh] w-full flex flex-col justify-between p-4">
             <!-- <span id="js-room-mode"></span>: -->
             <input
                 class="bg-transparent p-4 rounded-full border-white border opacity-0 focus:opacity-100"
@@ -29,8 +29,9 @@
                 placeholder="Room Name"
                 id="js-room-id"
             >
+            <div class="flex-auto"></div>
             <div
-                class="flex-auto aspect-video"
+                class="aspect-square absolute bg-gray-800 z-10 w-1/4 aspect-square overflow-hidden rounded-full absolute top-4 left-4"
                 id="js-remote-streams"
             ></div>
             <menu class="w-full flex items-center justify-center gap-4">
@@ -44,26 +45,29 @@
                 >Leave</button>
                 <details class="ml-auto">
                     <summary class="bg-blue-500 px-6 py-2 rounded-full relative z-10">Chat</summary>
-                    <div class="fixed inset-4 bottom-none h-[calc(100vh-6rem)] bg-white flex flex-col text-black rounded-2xl p-4">
-                        <p
-                            class="meta"
-                            id="js-meta"
-                        ></p>
-                        <pre
-                            class="flex-auto"
-                            id="js-messages"
-                        ></pre>
-                        <menu class="flex">
-                            <input
-                                class="p-4 flex-auto bg-gray-200 rounded-l-full"
-                                type="text"
-                                id="js-local-text"
-                            >
-                            <button
-                                class="bg-red-500 px-6 py-2 rounded-r-full"
-                                id="js-send-trigger"
-                            >Send</button>
-                        </menu>
+                    <div class="flex items-end justify-end max-h-0 max-w-0 -translate-y-8">
+                        <div
+                            class="min-h-max min-w-max w-full h-[calc(100vh-6rem)] bg-white flex flex-col text-black rounded-2xl p-4">
+                            <p
+                                class="meta"
+                                id="js-meta"
+                            ></p>
+                            <pre
+                                class="flex-auto"
+                                id="js-messages"
+                            ></pre>
+                            <menu class="flex">
+                                <input
+                                    class="p-4 flex-auto bg-gray-200 rounded-l-full"
+                                    type="text"
+                                    id="js-local-text"
+                                >
+                                <button
+                                    class="bg-red-500 px-6 py-2 rounded-r-full"
+                                    id="js-send-trigger"
+                                >Send</button>
+                            </menu>
+                        </div>
                     </div>
                 </details>
             </menu>
@@ -146,6 +150,7 @@
                     room.on('stream', async stream => {
                         const newVideo = document.createElement('video');
                         newVideo.srcObject = stream;
+                        newVideo.className = "min-w-full min-h-full -scale-100 rotate-180 object-cover";
                         newVideo.playsInline = true;
                         // mark peerId to find it later at peerLeave event
                         newVideo.setAttribute('data-peer-id', stream.peerId);
