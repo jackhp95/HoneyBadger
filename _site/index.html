@@ -20,44 +20,50 @@
             id="js-local-stream"
             class="fixed inset-0 h-full w-full pointer-events-none"
         ></video>
-        <section class="fixed inset-0">
-            <span id="js-room-mode"></span>:
+        <section class="fixed inset-0 flex flex-col justify-between">
+            <!-- <span id="js-room-mode"></span>: -->
             <input
+                class="bg-transparent p-4 rounded-full border-white border mx-4"
+                value="badger"
                 type="text"
                 placeholder="Room Name"
                 id="js-room-id"
             >
-            <menu class="fixed w-full flex items-center p-4">
-                <button
-                    class="bg-green-500 px-"
-                    id="js-join-trigger"
-                >Join</button>
-                <button
-                    class="bg-red-500"
-                    id="js-leave-trigger"
-                >Leave</button>
-            </menu>
-
             <div
-                class="remote-streams"
+                class="absolute"
                 id="js-remote-streams"
             ></div>
 
-            <div>
-                <pre
-                    class="messages"
-                    id="js-messages"
-                ></pre>
-                <input
-                    type="text"
-                    id="js-local-text"
-                >
-                <button id="js-send-trigger">Send</button>
-            </div>
             <p
                 class="meta"
                 id="js-meta"
             ></p>
+
+            <menu class="w-full flex items-center justify-center p-4 gap-4">
+                <button
+                    class="bg-green-500 px-6 py-2 rounded-full"
+                    id="js-join-trigger"
+                >Join</button>
+                <button
+                    class="bg-red-500 px-6 py-2 rounded-full"
+                    id="js-leave-trigger"
+                >Leave</button>
+                <details>
+                    <summary class="bg-blue-500 px-6 py-2 rounded-full relative z-10">Chat</summary>
+                    <div class="fixed inset-0 bg-white flex flex-col text-black">
+                        <pre
+                            class="flex-auto"
+                            id="js-messages"
+                        ></pre>
+                        <input
+                            class="bg-transparent p-4"
+                            type="text"
+                            id="js-local-text"
+                        >
+                        <button id="js-send-trigger">Send</button>
+                    </div>
+                </details>
+            </menu>
         </section>
 
         <script src="//cdn.webrtc.ecl.ntt.com/skyway-latest.js"></script>
@@ -71,7 +77,7 @@
                 const leaveTrigger = document.getElementById('js-leave-trigger');
                 const remoteVideos = document.getElementById('js-remote-streams');
                 const roomId = document.getElementById('js-room-id');
-                //const roomMode = document.getElementById('js-room-mode');
+                const roomMode = document.getElementById('js-room-mode');
                 const localText = document.getElementById('js-local-text');
                 const sendTrigger = document.getElementById('js-send-trigger');
                 const messages = document.getElementById('js-messages');
