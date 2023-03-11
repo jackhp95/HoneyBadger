@@ -15,37 +15,51 @@
         <script src="https://cdn.tailwindcss.com"></script>
     </head>
 
-    <body>
-        <video id="js-local-stream" class="fixed inset-0 h-full w-full"></video>
-        <span id="js-room-mode"></span>:
-        <input
-            type="text"
-            placeholder="Room Name"
-            id="js-room-id"
-        >
-        <button id="js-join-trigger">Join</button>
-        <button id="js-leave-trigger">Leave</button>
-
-        <div
-            class="remote-streams"
-            id="js-remote-streams"
-        ></div>
-
-        <div>
-            <pre
-                class="messages"
-                id="js-messages"
-            ></pre>
+    <body class="bg-black text-white">
+        <video
+            id="js-local-stream"
+            class="fixed inset-0 h-full w-full pointer-events-none"
+        ></video>
+        <section class="fixed inset-0">
+            <span id="js-room-mode"></span>:
             <input
                 type="text"
-                id="js-local-text"
+                placeholder="Room Name"
+                id="js-room-id"
             >
-            <button id="js-send-trigger">Send</button>
-        </div>
-        <p
-            class="meta"
-            id="js-meta"
-        ></p>
+            <menu class="fixed w-full flex items-center p-4">
+                <button
+                    class="bg-green-500 px-"
+                    id="js-join-trigger"
+                >Join</button>
+                <button
+                    class="bg-red-500"
+                    id="js-leave-trigger"
+                >Leave</button>
+            </menu>
+
+            <div
+                class="remote-streams"
+                id="js-remote-streams"
+            ></div>
+
+            <div>
+                <pre
+                    class="messages"
+                    id="js-messages"
+                ></pre>
+                <input
+                    type="text"
+                    id="js-local-text"
+                >
+                <button id="js-send-trigger">Send</button>
+            </div>
+            <p
+                class="meta"
+                id="js-meta"
+            ></p>
+        </section>
+
         <script src="//cdn.webrtc.ecl.ntt.com/skyway-latest.js"></script>
         <script>
             let peer;
