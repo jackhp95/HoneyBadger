@@ -320,7 +320,7 @@
                 peer.on('error', (error) => {
                     console.error;
                     console.log(error.type);
-                    messages.textContent += error.type
+                    messages.textContent += JSON.stringify(error, null, 2)
                 });
                 peer.on('close', () => {
                     console.error('close Peer');
