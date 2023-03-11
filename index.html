@@ -123,7 +123,7 @@
                     .getUserMedia({
                         audio: true,
                         video: {
-                            facingMode: { exact: "environment" },
+                            facingMode: { facingMode: "environment" },
                         },
                     })
                     .catch(console.error);
