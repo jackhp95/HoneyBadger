@@ -141,7 +141,12 @@
                 }));
 
                 // Register join handler
-                joinTrigger.addEventListener('DOMContentLoaded', joinRoom);
+                const joinLoop = () => {
+                    if (!peer.open) return requestAnimationFrame(joinLoop);
+                    console.log("OPEN!");
+                    joinRoom();
+                }
+                joinLoop();
 
                 function joinRoom() {
                     // Note that you need to ensure the peer has connected to signaling server
